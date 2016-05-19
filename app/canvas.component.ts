@@ -9,7 +9,6 @@ import {MathService} from './math.service.ts'
 import {OptionsComponent} from './options.component';
 
 @Component({
-    selector: 'my-canvas',
     templateUrl: 'app/canvas.component.html',
     providers: [DrawerService],
     directives: [OptionsComponent]

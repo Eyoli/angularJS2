@@ -4,3 +4,6 @@ typings
 
 // Fichiers spécifiques à TypeScript
 app/*.js.map
+
+// Fichiers spécifiques à NodeJS
+npm-debug.log
