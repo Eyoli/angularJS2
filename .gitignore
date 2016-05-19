@@ -1,0 +1,6 @@
+// Dossiers générés automatiquement après l'installation via npm
+node_modules
+typings
+
+// Fichiers spécifiques à TypeScript
+app/*.js.map
