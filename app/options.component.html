@@ -1,0 +1,41 @@
+{{diagnostic}}
+<div class="col-md-3">
+    <div class="panel panel-primary">
+        <div class="panel-heading">
+            <h3 class="panel-title">Options</h3>
+        </div>
+        <div class="panel-body">
+            <form class="form">
+                <div class="form-group">
+                    <button class="form-control" (click)="reset()">Reset</button>
+                </div>
+                <hr>
+                <div class="form-group">
+                    <label>Nombre : </label>
+                    <input type="number" class="form-control" required 
+                    [(ngModel)]="options.nb"/>
+                </div>
+                <div class="form-group">
+                    <label>Ecart-type X : </label>
+                    <input type="number" class="form-control"
+                    [(ngModel)]="options.ecartTypeX"/> 
+                </div>
+                <div class="form-group">
+                    <label>Ecart-type Y : </label>
+                    <input type="number" class="form-control"
+                    [(ngModel)]="options.ecartTypeY"/>
+                </div>
+                <div class="form-group">
+                    <label>Coef d'agrandissement min : </label>
+                    <input step="any" type="number" class="form-control"
+                    [(ngModel)]="options.coefAgrandissementMin"/>
+                </div>
+                <div class="form-group">
+                    <label>Coef d'agrandissement max : </label>
+                    <input step="any" type="number" class="form-control"
+                    [(ngModel)]="options.coefAgrandissementMax"/>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
