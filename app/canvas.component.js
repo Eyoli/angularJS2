@@ -86,9 +86,8 @@ System.register(['angular2/core', './drawer.service.ts', './generator.service.ts
                 ], CanvasComponent.prototype, "optionsForm", void 0);
                 CanvasComponent = __decorate([
                     core_1.Component({
-                        selector: 'my-canvas',
                         templateUrl: 'app/canvas.component.html',
-                        providers: [drawer_service_ts_1.DrawerService],
+                        providers: [drawer_service_ts_1.DrawerService, math_service_ts_1.MathService, generator_service_ts_1.Generator2DService],
                         directives: [options_component_1.OptionsComponent]
                     }), 
                     __metadata('design:paramtypes', [generator_service_ts_1.Generator2DService, math_service_ts_1.MathService, drawer_service_ts_1.DrawerService])

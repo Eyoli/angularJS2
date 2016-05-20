@@ -1,4 +1,4 @@
-System.register(['angular2/core', './generator.service.ts', './math.service.ts', './drawer.service.ts', './arbre'], function(exports_1, context_1) {
+System.register(['angular2/core', './generator.service.ts', './math.service.ts', './drawer.service.ts', './options.croissance.component', './arbre'], function(exports_1, context_1) {
     "use strict";
     var __moduleName = context_1 && context_1.id;
     var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -10,7 +10,7 @@ System.register(['angular2/core', './generator.service.ts', './math.service.ts',
     var __metadata = (this && this.__metadata) || function (k, v) {
         if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
     };
-    var core_1, core_2, generator_service_ts_1, math_service_ts_1, drawer_service_ts_1, arbre_1;
+    var core_1, core_2, generator_service_ts_1, math_service_ts_1, drawer_service_ts_1, options_croissance_component_1, arbre_1;
     var CroissanceComponent;
     return {
         setters:[
@@ -26,6 +26,9 @@ System.register(['angular2/core', './generator.service.ts', './math.service.ts',
             },
             function (drawer_service_ts_1_1) {
                 drawer_service_ts_1 = drawer_service_ts_1_1;
+            },
+            function (options_croissance_component_1_1) {
+                options_croissance_component_1 = options_croissance_component_1_1;
             },
             function (arbre_1_1) {
                 arbre_1 = arbre_1_1;
@@ -110,9 +113,9 @@ System.register(['angular2/core', './generator.service.ts', './math.service.ts',
                 ], CroissanceComponent.prototype, "canvasCroissance", void 0);
                 CroissanceComponent = __decorate([
                     core_1.Component({
-                        selector: 'croissanceComponent',
                         templateUrl: 'app/croissance.component.html',
-                        providers: [drawer_service_ts_1.DrawerService]
+                        providers: [drawer_service_ts_1.DrawerService, math_service_ts_1.MathService, generator_service_ts_1.Generator2DService],
+                        directives: [options_croissance_component_1.OptionsCroissanceComponent]
                     }), 
                     __metadata('design:paramtypes', [generator_service_ts_1.Generator2DService, math_service_ts_1.MathService, drawer_service_ts_1.DrawerService])
                 ], CroissanceComponent);

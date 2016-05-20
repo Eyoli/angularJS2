@@ -10,7 +10,7 @@ import {OptionsComponent} from './options.component';
 
 @Component({
     templateUrl: 'app/canvas.component.html',
-    providers: [DrawerService],
+    providers: [DrawerService, MathService, Generator2DService],
     directives: [OptionsComponent]
 })
 export class CanvasComponent implements AfterViewInit {

@@ -1,7 +1,7 @@
 import { Component } from 'angular2/core';
 import {AfterViewInit} from 'angular2/core';
 import {ViewChild} from 'angular2/core';
-import {ROUTER_DIRECTIVES, ROUTER_PROVIDERS, RouteConfig} from 'angular2/router';
+import {ROUTER_DIRECTIVES, ROUTER_PROVIDERS, RouteConfig, RouteData} from 'angular2/router';
 
 import {Generator2DService} from './generator.service.ts'
 import {MathService} from './math.service.ts'
@@ -12,8 +12,8 @@ import {CroissanceComponent} from './croissance.component';
 @Component({
   selector: 'menu',
   templateUrl: 'app/menu.component.html',
-  providers: [ROUTER_PROVIDERS, Generator2DService, MathService],
-  directives: [ROUTER_DIRECTIVES, CanvasComponent, CroissanceComponent]
+  providers: [ROUTER_PROVIDERS, RouteData, Generator2DService, MathService],
+  directives: [ROUTER_DIRECTIVES]
 })
 @RouteConfig([
   {
@@ -28,20 +28,24 @@ import {CroissanceComponent} from './croissance.component';
     useAsDefault: true
   }
 ])
-export class MenuComponent {    
-    @ViewChild("panneaux") panneaux;
-    @ViewChild("menu") menu;
+export class MenuComponent implements AfterViewInit {
+    routes: {};
     
-    constructor(private _generator2DService: Generator2DService, 
-                private _mathService: MathService) { 
+    constructor(private _routerService: RouteData) {
+        this.routes = _routerService.data;
     }
     
-    afficherPanneau(numero) {
-        for(var i = 0; i < this.panneaux.nativeElement.children.length; i++) {
-            this.panneaux.nativeElement.children[i].style.display = "none";
-            this.menu.nativeElement.children[i].className = "";
+    changerMenuActif(event) {
+        var menuItemList = event.currentTarget.children;
+        for(var i = 0; i < menuItemList.length; i++) {
+            if(menuItemList[i].firstChild.className === "router-link-active") {
+                menuItemList[i].className = "active";
+            } else {
+                menuItemList[i].className = "";
+            }
         }
-        this.panneaux.nativeElement.children[numero].style.display = "initial";
-        this.menu.nativeElement.children[numero].className = "active";
+    }
+    
+    ngAfterViewInit() {
     }
 }

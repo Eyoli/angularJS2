@@ -10,13 +10,12 @@ System.register(['angular2/core', 'angular2/router', './generator.service.ts', '
     var __metadata = (this && this.__metadata) || function (k, v) {
         if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
     };
-    var core_1, core_2, router_1, generator_service_ts_1, math_service_ts_1, canvas_component_1, croissance_component_1;
+    var core_1, router_1, generator_service_ts_1, math_service_ts_1, canvas_component_1, croissance_component_1;
     var MenuComponent;
     return {
         setters:[
             function (core_1_1) {
                 core_1 = core_1_1;
-                core_2 = core_1_1;
             },
             function (router_1_1) {
                 router_1 = router_1_1;
@@ -35,32 +34,29 @@ System.register(['angular2/core', 'angular2/router', './generator.service.ts', '
             }],
         execute: function() {
             MenuComponent = (function () {
-                function MenuComponent(_generator2DService, _mathService) {
-                    this._generator2DService = _generator2DService;
-                    this._mathService = _mathService;
+                function MenuComponent(_routerService) {
+                    this._routerService = _routerService;
+                    this.routes = _routerService.data;
                 }
-                MenuComponent.prototype.afficherPanneau = function (numero) {
-                    for (var i = 0; i < this.panneaux.nativeElement.children.length; i++) {
-                        this.panneaux.nativeElement.children[i].style.display = "none";
-                        this.menu.nativeElement.children[i].className = "";
+                MenuComponent.prototype.changerMenuActif = function (event) {
+                    var menuItemList = event.currentTarget.children;
+                    for (var i = 0; i < menuItemList.length; i++) {
+                        if (menuItemList[i].firstChild.className === "router-link-active") {
+                            menuItemList[i].className = "active";
+                        }
+                        else {
+                            menuItemList[i].className = "";
+                        }
                     }
-                    this.panneaux.nativeElement.children[numero].style.display = "initial";
-                    this.menu.nativeElement.children[numero].className = "active";
                 };
-                __decorate([
-                    core_2.ViewChild("panneaux"), 
-                    __metadata('design:type', Object)
-                ], MenuComponent.prototype, "panneaux", void 0);
-                __decorate([
-                    core_2.ViewChild("menu"), 
-                    __metadata('design:type', Object)
-                ], MenuComponent.prototype, "menu", void 0);
+                MenuComponent.prototype.ngAfterViewInit = function () {
+                };
                 MenuComponent = __decorate([
                     core_1.Component({
                         selector: 'menu',
                         templateUrl: 'app/menu.component.html',
-                        providers: [router_1.ROUTER_PROVIDERS, generator_service_ts_1.Generator2DService, math_service_ts_1.MathService],
-                        directives: [router_1.ROUTER_DIRECTIVES, canvas_component_1.CanvasComponent, croissance_component_1.CroissanceComponent]
+                        providers: [router_1.ROUTER_PROVIDERS, router_1.RouteData, generator_service_ts_1.Generator2DService, math_service_ts_1.MathService],
+                        directives: [router_1.ROUTER_DIRECTIVES]
                     }),
                     router_1.RouteConfig([
                         {
@@ -75,7 +71,7 @@ System.register(['angular2/core', 'angular2/router', './generator.service.ts', '
                             useAsDefault: true
                         }
                     ]), 
-                    __metadata('design:paramtypes', [generator_service_ts_1.Generator2DService, math_service_ts_1.MathService])
+                    __metadata('design:paramtypes', [router_1.RouteData])
                 ], MenuComponent);
                 return MenuComponent;
             }());

@@ -6,14 +6,14 @@ import {Generator2DService} from './generator.service.ts'
 import {MathService} from './math.service.ts'
 import {DrawerService} from './drawer.service.ts'
 
-import {OptionsComponent} from './options.component';
+import {OptionsCroissanceComponent} from './options.croissance.component';
 
 import {Arbre} from './arbre';
 
 @Component({
-    selector: 'croissanceComponent',
     templateUrl: 'app/croissance.component.html',
-    providers: [DrawerService]
+    providers: [DrawerService, MathService, Generator2DService],
+    directives: [OptionsCroissanceComponent]
 })
 export class CroissanceComponent implements AfterViewInit {
     @ViewChild("canvasCroissance") canvasCroissance;
