@@ -54,6 +54,13 @@ System.register(['angular2/core'], function(exports_1, context_1) {
                     this._context.stroke();
                     this._context.closePath();
                 };
+                DrawerService.prototype.getNextFrame = function (callback) {
+                    var fonction = window.requestAnimationFrame || window.msRequestAnimationFrame ||
+                        function (callback) {
+                            window.setTimeout(callback, 1000 / 60);
+                        };
+                    fonction(callback);
+                };
                 DrawerService.prototype.reset = function () {
                     this._context.clearRect(0, 0, this._width, this._height);
                 };

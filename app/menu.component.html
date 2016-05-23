@@ -3,10 +3,19 @@
         <div class="navbar-header">
             <a class="navbar-brand">Test AngularJS 2</a>
         </div>
-        <ul class="nav navbar-nav" (click)="changerMenuActif($event)">
-            <li><a [routerLink]="['Foret']">Forêt</a></li>
-            <li><a [routerLink]="['Croissance']">Croissance</a></li>
-        </ul>
+        
+        <div class="collapse navbar-collapse">
+            <ul class="nav navbar-nav">
+                <li><a [routerLink]="['Foret']">Forêt</a></li>
+                <li class="dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Croissance</a>
+                    <ul class="dropdown-menu">
+                        <li><a [routerLink]="['Canvas']">Canvas</a></li>
+                        <li><a [routerLink]="['Modeles']">Modèles</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
     </div>
 </nav>
 

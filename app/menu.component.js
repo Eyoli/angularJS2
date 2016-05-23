@@ -1,4 +1,4 @@
-System.register(['angular2/core', 'angular2/router', './generator.service.ts', './math.service.ts', './canvas.component', './croissance.component'], function(exports_1, context_1) {
+System.register(['angular2/core', 'angular2/router', './data.service.ts', './math.service.ts', './generator.service.ts', './canvas.component', './croissance.component', './arbre.form'], function(exports_1, context_1) {
     "use strict";
     var __moduleName = context_1 && context_1.id;
     var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -10,7 +10,7 @@ System.register(['angular2/core', 'angular2/router', './generator.service.ts', '
     var __metadata = (this && this.__metadata) || function (k, v) {
         if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
     };
-    var core_1, router_1, generator_service_ts_1, math_service_ts_1, canvas_component_1, croissance_component_1;
+    var core_1, router_1, data_service_ts_1, math_service_ts_1, generator_service_ts_1, canvas_component_1, croissance_component_1, arbre_form_1;
     var MenuComponent;
     return {
         setters:[
@@ -20,43 +20,39 @@ System.register(['angular2/core', 'angular2/router', './generator.service.ts', '
             function (router_1_1) {
                 router_1 = router_1_1;
             },
-            function (generator_service_ts_1_1) {
-                generator_service_ts_1 = generator_service_ts_1_1;
+            function (data_service_ts_1_1) {
+                data_service_ts_1 = data_service_ts_1_1;
             },
             function (math_service_ts_1_1) {
                 math_service_ts_1 = math_service_ts_1_1;
+            },
+            function (generator_service_ts_1_1) {
+                generator_service_ts_1 = generator_service_ts_1_1;
             },
             function (canvas_component_1_1) {
                 canvas_component_1 = canvas_component_1_1;
             },
             function (croissance_component_1_1) {
                 croissance_component_1 = croissance_component_1_1;
+            },
+            function (arbre_form_1_1) {
+                arbre_form_1 = arbre_form_1_1;
             }],
         execute: function() {
             MenuComponent = (function () {
-                function MenuComponent(_routerService) {
+                function MenuComponent(_routerService, _dataService) {
                     this._routerService = _routerService;
+                    this._dataService = _dataService;
                     this.routes = _routerService.data;
                 }
-                MenuComponent.prototype.changerMenuActif = function (event) {
-                    var menuItemList = event.currentTarget.children;
-                    for (var i = 0; i < menuItemList.length; i++) {
-                        if (menuItemList[i].firstChild.className === "router-link-active") {
-                            menuItemList[i].className = "active";
-                        }
-                        else {
-                            menuItemList[i].className = "";
-                        }
-                    }
-                };
                 MenuComponent.prototype.ngAfterViewInit = function () {
                 };
                 MenuComponent = __decorate([
                     core_1.Component({
                         selector: 'menu',
                         templateUrl: 'app/menu.component.html',
-                        providers: [router_1.ROUTER_PROVIDERS, router_1.RouteData, generator_service_ts_1.Generator2DService, math_service_ts_1.MathService],
-                        directives: [router_1.ROUTER_DIRECTIVES]
+                        providers: [router_1.ROUTER_PROVIDERS, router_1.RouteData, data_service_ts_1.DataService, math_service_ts_1.MathService, generator_service_ts_1.Generator2DService],
+                        directives: [router_1.ROUTER_DIRECTIVES, canvas_component_1.CanvasComponent, arbre_form_1.ArbreFormulaire, croissance_component_1.CroissanceComponent]
                     }),
                     router_1.RouteConfig([
                         {
@@ -65,13 +61,18 @@ System.register(['angular2/core', 'angular2/router', './generator.service.ts', '
                             component: canvas_component_1.CanvasComponent
                         },
                         {
-                            path: '/croissance',
-                            name: 'Croissance',
+                            path: '/croissance/canvas',
+                            name: 'Canvas',
                             component: croissance_component_1.CroissanceComponent,
                             useAsDefault: true
+                        },
+                        {
+                            path: '/croissance/modeles',
+                            name: 'Modeles',
+                            component: arbre_form_1.ArbreFormulaire
                         }
                     ]), 
-                    __metadata('design:paramtypes', [router_1.RouteData])
+                    __metadata('design:paramtypes', [router_1.RouteData, data_service_ts_1.DataService])
                 ], MenuComponent);
                 return MenuComponent;
             }());

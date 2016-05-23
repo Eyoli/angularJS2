@@ -5,20 +5,22 @@ import {ViewChild} from 'angular2/core';
 import {Generator2DService} from './generator.service.ts'
 import {MathService} from './math.service.ts'
 import {DrawerService} from './drawer.service.ts'
+import {DataService} from './data.service.ts'
 
 import {OptionsCroissanceComponent} from './options.croissance.component';
 
 import {Arbre} from './arbre';
+import {ArbreModele} from './arbre.modele';
 
 @Component({
     templateUrl: 'app/croissance.component.html',
-    providers: [DrawerService, MathService, Generator2DService],
+    providers: [DrawerService],
     directives: [OptionsCroissanceComponent]
 })
 export class CroissanceComponent implements AfterViewInit {
     @ViewChild("canvasCroissance") canvasCroissance;
     
-    textureArbre: HTMLImageElement;
+    arbresModeles: ArbreModele[];
     arbres: Arbre[];
     imgWidth: number;
     imgHeight: number;
@@ -29,9 +31,11 @@ export class CroissanceComponent implements AfterViewInit {
     
     constructor(private _generator2DService: Generator2DService, 
                 private _mathService: MathService,
-                private _drawerService: DrawerService) { 
-        this.textureArbre = new Image();
-        this.textureArbre.src = 'app/arbre.png';
+                private _drawerService: DrawerService,
+                private _dataService: DataService) {
+        
+        this._dataService.getModeles()
+            .then(result => this.arbresModeles = result);
     }
     
     ngAfterViewInit() {
@@ -51,17 +55,22 @@ export class CroissanceComponent implements AfterViewInit {
     }
     
     commencerForet(event) {
-        var i = 0;
-        this.insererArbre(new Arbre(event.offsetX, event.offsetY));
+        this.arbres.length = 0;
+        var arbre = this.creerArbre(event.offsetX, event.offsetY);
+        this.insererArbre(arbre);
+        var self = this;
     }
     
     faireCroitre() {
         var nouveauxArbres = [];
-        for(var i = 0; i < this.arbres.length; i++) {
+        
+        var i = 0;
+        while(i < this.arbres.length) {
             this.arbres[i].age++;
             if(this.arbres[i].taille < this.arbres[i].tailleMax) {
                 this.arbres[i].taille += 0.03;
             }
+            
             if(this.arbres[i].age - this.arbres[i].ageDernierePortee > this.arbres[i].intervalleFecondation
              && this.arbres.length < this.nbArbresMax) {
                 var nbRejetons = Math.random();
@@ -71,15 +80,28 @@ export class CroissanceComponent implements AfterViewInit {
                         this.arbres[i].centreX,
                         this.dispersion*this.dispersion,
                         this.arbres[i].centreY);
-                    nouveauxArbres.push(new Arbre(point.x, point.y));
+                        
+                    var arbre = this.creerArbre(point.x, point.y);
+                    nouveauxArbres.push(arbre);
                 }
                 this.arbres[i].ageDernierePortee = this.arbres[i].age;
+            }
+            
+            if(this.arbres[i].age >= this.arbres[i].ageMax) {
+                this.arbres.splice(i, 1);
+            } else {
+                i++;
             }
         }
         
         for(var i = 0; i < nouveauxArbres.length; i++) {
             this.insererArbre(nouveauxArbres[i]);
         }
+    }
+    
+    creerArbre(x, y) {
+        var idModele = Math.floor(Math.random() * (this.arbresModeles.length - 0.0000001));
+        return new Arbre(x, y, this.arbresModeles[idModele]);
     }
     
     insererArbre(arbre) {
@@ -108,14 +130,13 @@ export class CroissanceComponent implements AfterViewInit {
                                               this.arbres[i].centreY,
                                               this.imgWidth * this.arbres[i].taille,
                                               this.imgHeight * this.arbres[i].taille,
-                                              this.textureArbre);
+                                              null);
         }
         
         var self = this;
-        window.requestAnimFrame(function() {
+        self._drawerService.getNextFrame(function() {
           self.faireCroitre();
           self.afficher();
         });
     }
 }
-

@@ -10,7 +10,7 @@ import {OptionsComponent} from './options.component';
 
 @Component({
     templateUrl: 'app/canvas.component.html',
-    providers: [DrawerService, MathService, Generator2DService],
+    providers: [DrawerService],
     directives: [OptionsComponent]
 })
 export class CanvasComponent implements AfterViewInit {
@@ -25,7 +25,9 @@ export class CanvasComponent implements AfterViewInit {
                 private _mathService: MathService,
                 private _drawerService: DrawerService) { 
         this.arbre = new Image();
-        this.arbre.src = 'app/arbre.png';
+        this.arbre.src = 'app/arbre1.png';
+        this.imgWidth = 50 / 2;
+        this.imgHeight = 53 / 2;
     }
     
     ngAfterViewInit() {
@@ -33,8 +35,6 @@ export class CanvasComponent implements AfterViewInit {
         var canvas = self.myCanvas.nativeElement;
         canvas.width = canvas.parentElement.clientWidth;
         var context = canvas.getContext("2d");
-        this.imgWidth = 50 / 2;
-        this.imgHeight = 53 / 2;
         this._drawerService.init(context, canvas.width, canvas.height);
     }
     

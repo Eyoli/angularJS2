@@ -4,5 +4,3 @@ import {CanvasComponent} from './canvas.component';
 import {CroissanceComponent} from './croissance.component';
 
 bootstrap(MenuComponent);
-bootstrap(CanvasComponent);
-bootstrap(CroissanceComponent);

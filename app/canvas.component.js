@@ -37,15 +37,15 @@ System.register(['angular2/core', './drawer.service.ts', './generator.service.ts
                     this._mathService = _mathService;
                     this._drawerService = _drawerService;
                     this.arbre = new Image();
-                    this.arbre.src = 'app/arbre.png';
+                    this.arbre.src = 'app/arbre1.png';
+                    this.imgWidth = 50 / 2;
+                    this.imgHeight = 53 / 2;
                 }
                 CanvasComponent.prototype.ngAfterViewInit = function () {
                     var self = this;
                     var canvas = self.myCanvas.nativeElement;
                     canvas.width = canvas.parentElement.clientWidth;
                     var context = canvas.getContext("2d");
-                    this.imgWidth = 50 / 2;
-                    this.imgHeight = 53 / 2;
                     this._drawerService.init(context, canvas.width, canvas.height);
                 };
                 CanvasComponent.prototype.genererForet = function (event) {
@@ -87,7 +87,7 @@ System.register(['angular2/core', './drawer.service.ts', './generator.service.ts
                 CanvasComponent = __decorate([
                     core_1.Component({
                         templateUrl: 'app/canvas.component.html',
-                        providers: [drawer_service_ts_1.DrawerService, math_service_ts_1.MathService, generator_service_ts_1.Generator2DService],
+                        providers: [drawer_service_ts_1.DrawerService],
                         directives: [options_component_1.OptionsComponent]
                     }), 
                     __metadata('design:paramtypes', [generator_service_ts_1.Generator2DService, math_service_ts_1.MathService, drawer_service_ts_1.DrawerService])

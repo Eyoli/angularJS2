@@ -1,5 +1,5 @@
 .ng-valid {
-    border: 5px solid #42A948 !important; /* green */
+    border-left: 5px solid #42A948 !important; /* green */
 }
 .ng-invalid {
     border-left: 5px solid #a94442 !important; /* red */
