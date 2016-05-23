@@ -118,7 +118,7 @@ System.register(['angular2/core', './generator.service.ts', './math.service.ts',
                         this.lastArbresNb = this.arbres.length;
                     }
                     for (var i = 0; i < this.arbres.length; i++) {
-                        this._drawerService.dessinerArbre(this.arbres[i].centreX, this.arbres[i].centreY, this.imgWidth * this.arbres[i].taille, this.imgHeight * this.arbres[i].taille, null);
+                        this._drawerService.dessinerArbre(this.arbres[i].centreX, this.arbres[i].centreY, this.imgWidth * this.arbres[i].taille, this.imgHeight * this.arbres[i].taille, this.arbres[i].modele.texture);
                     }
                     var self = this;
                     self._drawerService.getNextFrame(function () {

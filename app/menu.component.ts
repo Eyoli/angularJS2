@@ -25,7 +25,7 @@ import {ArbreFormulaire} from './arbre.form';
   },
   {
     path: '/croissance/canvas',
-    name: 'Canvas',
+    name: 'Canvas', 
     component: CroissanceComponent,
     useAsDefault: true
   },

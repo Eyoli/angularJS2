@@ -130,7 +130,7 @@ export class CroissanceComponent implements AfterViewInit {
                                               this.arbres[i].centreY,
                                               this.imgWidth * this.arbres[i].taille,
                                               this.imgHeight * this.arbres[i].taille,
-                                              null);
+                                              this.arbres[i].modele.texture);
         }
         
         var self = this;

@@ -8,8 +8,9 @@ export class DataService {
     
     constructor() {
         this.arbresModeles = [];
-        this.arbresModeles.push(new ArbreModele("Modèle 1", 2.25, 400, 200, 'app/arbre1.png', 50/2, 53/2));
-        this.arbresModeles.push(new ArbreModele("Modèle 2", 2.25, 400, 200, 'app/arbre2.png', 50/2, 53/2));
+        this.arbresModeles.push(new ArbreModele("Modèle 1", 0.25, 2, 100, 200, 400, 'app/arbre1.png', 50/2, 53/2));
+        this.arbresModeles.push(new ArbreModele("Modèle 2", 0.25, 2, 100, 200, 400, 'app/arbre2.png', 25, 25));
+        this.arbresModeles.push(new ArbreModele("Modèle 3", 0.25, 2, 100, 200, 400, 'app/arbre3.png', 25, 25));
     }
     
     getModeles() {
