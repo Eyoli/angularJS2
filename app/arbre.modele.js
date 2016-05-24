@@ -6,11 +6,13 @@ System.register([], function(exports_1, context_1) {
         setters:[],
         execute: function() {
             ArbreModele = (function () {
-                function ArbreModele(nom, tailleMax, ageMax, intervalleFecondation, textureSrc, width, height) {
+                function ArbreModele(nom, tailleMin, tailleMax, intervalleReproductionMin, intervalleReproductionMax, ageMax, textureSrc, width, height) {
                     this.nom = nom;
+                    this.tailleMin = tailleMin;
                     this.tailleMax = tailleMax;
+                    this.intervalleReproductionMin = intervalleReproductionMin;
+                    this.intervalleReproductionMax = intervalleReproductionMax;
                     this.ageMax = ageMax;
-                    this.intervalleFecondation = intervalleFecondation;
                     this.width = width;
                     this.height = height;
                     this.texture = new Image();

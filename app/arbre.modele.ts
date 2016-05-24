@@ -3,9 +3,11 @@ export class ArbreModele {
 
   constructor(
     public nom: string,
+    public tailleMin: number,
     public tailleMax: number,
+    public intervalleReproductionMin: number,
+    public intervalleReproductionMax: number,
     public ageMax: number,
-    public intervalleFecondation: number,
     textureSrc: string,
     public width: number,
     public height: number) {
