@@ -5,5 +5,8 @@ typings
 // Fichiers spécifiques à TypeScript
 app/*.js.map
 
+// Fichiers .js générés lors du transipiling des fichiers .ts
+app/*.js
+
 // Fichiers spécifiques à NodeJS
 npm-debug.log
